@@ -1,0 +1,214 @@
+{
+  "main": {
+    "id": "0f8a68a5e21a3e1b",
+    "type": "split",
+    "children": [
+      {
+        "id": "cbf83c923066c242",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "e29205c606337b3e",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "IoC Monitoring/Logs.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "Logs"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "vertical"
+  },
+  "left": {
+    "id": "a896c9317aa8f8ef",
+    "type": "split",
+    "children": [
+      {
+        "id": "662822fc65eab84f",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "5a38d0d1638fc788",
+            "type": "leaf",
+            "state": {
+              "type": "file-explorer",
+              "state": {
+                "sortOrder": "alphabetical",
+                "autoReveal": false
+              },
+              "icon": "lucide-folder-closed",
+              "title": "Files"
+            }
+          },
+          {
+            "id": "fab127b0ba976516",
+            "type": "leaf",
+            "state": {
+              "type": "search",
+              "state": {
+                "query": "",
+                "matchingCase": false,
+                "explainSearch": false,
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical"
+              },
+              "icon": "lucide-search",
+              "title": "Search"
+            }
+          },
+          {
+            "id": "6aa9c422eb3abef4",
+            "type": "leaf",
+            "state": {
+              "type": "bookmarks",
+              "state": {},
+              "icon": "lucide-bookmark",
+              "title": "Bookmarks"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 200
+  },
+  "right": {
+    "id": "d70ad6564bad5a50",
+    "type": "split",
+    "children": [
+      {
+        "id": "2b90c20d62708417",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "ed3907ec6db50981",
+            "type": "leaf",
+            "state": {
+              "type": "backlink",
+              "state": {
+                "file": "Network/Wireshark.md",
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical",
+                "showSearch": false,
+                "searchQuery": "",
+                "backlinkCollapsed": false,
+                "unlinkedCollapsed": true
+              },
+              "icon": "links-coming-in",
+              "title": "Backlinks for Wireshark"
+            }
+          },
+          {
+            "id": "002b7bc723ae0f4a",
+            "type": "leaf",
+            "state": {
+              "type": "outgoing-link",
+              "state": {
+                "file": "Network/Wireshark.md",
+                "linksCollapsed": false,
+                "unlinkedCollapsed": true
+              },
+              "icon": "links-going-out",
+              "title": "Outgoing links from Wireshark"
+            }
+          },
+          {
+            "id": "13228a0a2e469bbb",
+            "type": "leaf",
+            "state": {
+              "type": "tag",
+              "state": {
+                "sortOrder": "frequency",
+                "useHierarchy": true,
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-tags",
+              "title": "Tags"
+            }
+          },
+          {
+            "id": "bac462e2b31b0e44",
+            "type": "leaf",
+            "state": {
+              "type": "all-properties",
+              "state": {
+                "sortOrder": "frequency",
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-archive",
+              "title": "All properties"
+            }
+          },
+          {
+            "id": "9c59b05c155a1e90",
+            "type": "leaf",
+            "state": {
+              "type": "outline",
+              "state": {
+                "file": "Network/Wireshark.md",
+                "followCursor": false,
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-list",
+              "title": "Outline of Wireshark"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300,
+    "collapsed": true
+  },
+  "left-ribbon": {
+    "hiddenItems": {
+      "table-editor-obsidian:Advanced Tables Toolbar": false,
+      "switcher:Open quick switcher": false,
+      "graph:Open graph view": false,
+      "canvas:Create new canvas": false,
+      "daily-notes:Open today's daily note": false,
+      "templates:Insert template": false,
+      "command-palette:Open command palette": false,
+      "bases:Create new base": false
+    }
+  },
+  "active": "e29205c606337b3e",
+  "lastOpenFiles": [
+    "Tools/Sources.md",
+    "IoC Monitoring/Logs.md",
+    "4624E.png",
+    "Network/Wireshark.md",
+    "Network/WS TR.png",
+    "IoC Monitoring/Data exfiltration.md",
+    "IoC Monitoring/MITM.md",
+    "IoC Monitoring/DoS.md",
+    "503.png",
+    "DoS 1.png",
+    "Untitled",
+    "Tools",
+    "DoS.png",
+    "DDoS.png",
+    "2026-04-18.md",
+    "Untitled.canvas",
+    "Untitled.base",
+    "1222.png",
+    "21.png",
+    "11.png",
+    "ARP ATT.png",
+    "IoC Monitoring",
+    "MITRE ATT&CK lifecycle",
+    "Network"
+  ]
+}
