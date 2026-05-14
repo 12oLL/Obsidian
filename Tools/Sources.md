@@ -22,3 +22,6 @@
 # IP Intel
 - VirusTotal
 - AbuseIPDB
+
+# Intelligence
+[Intelx](https://intelx.io/)

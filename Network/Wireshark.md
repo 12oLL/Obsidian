@@ -30,10 +30,5 @@ Before we start, below is a list of protocols you need to be familiar with. Thes
 
 **TLS** - Cryptographic protocol that ensures secure communication over the network.
 
-
 ## GUI
 Lets say you understand the protocols and have knowledge about the OSI model, then you see this when you start  sniffing (capturing traffic).
-
-![[WS TR.png]]
-
-![[WS deets.png]]

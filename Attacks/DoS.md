@@ -1,12 +1,14 @@
 # Introduction
 Denial-of-service is a type of attack that is done by either a single device from a single network, or multiple devices to flood a website or a web application with massive amount of requests, leading to a disruption in the servers.
 # DoS
+
 ![[DoS.png]]
 
 A DoS attack, is considered successful if it prevents a web service from functioning as it should. Let's see how a simple DoS attack can cause a great impact. 
 
 Suppose you have a website for selling your own publications. In your site, you have a search form. This search form takes user input and perform queries to the database to return a result. A simple feature that should be normal. If the search form doesn't validate or handle user input correctly, a malicious user can abuse the search bar by sending many or a single massive request that causes a DoS outage.   
 # DDoS
+
 ![[DDoS.png]]
 
 We have discussed DoS, now its time for the big brother, DDoS. They both work the same way, only that a DDoS work more efficiently, with an increased success rate. A DDoS works by sending requests the same way a DoS does, only with a large amount of devices referred to as *botnets*. A botnet is a collection of compromised devices such as computers, IoT devices, and even servers hijacked by malware. The attacker controls them via a Command and Control server (C2), sending them instructions to execute.
@@ -39,6 +41,7 @@ Web servers are valuable due to logs. Every major web service records web reques
 
 **Logic Abuse**: GET /products?limit=999999.
 **Description**: Attackers craft queries that overload the server, forcing it to load huge amounts of information and slowing it down for everyone.
+
 ![[DoS 1.png]]
 
 In this log, we can see the normal behavior from different users. Take a look at the underlined IP address. We start seeing unusual behavior from the user of `203.12.23.195`. Lets break the log down and see what actually occurred and why its unusual.
@@ -48,5 +51,6 @@ In this log, we can see the normal behavior from different users. Take a look at
 - **curl/7.88.1**: The user-agent of the user.
 
 Now, why is this weird? As we saw, the logs looked normal before this user joined in. Random pages requested, multiple users, and usual user-agents such as Mozilla. The red flag is the massive amounts of GET requests to the /login page using the outdated curl user-agent. Lets see what happened after the requests this user made.
+
 ![[503.png]]
 As we can see, the site became unresponsive. We can see that by the status code 503 that the users are receiving when querying, indicating no response.

@@ -8,17 +8,20 @@
         "type": "tabs",
         "children": [
           {
-            "id": "e29205c606337b3e",
+            "id": "938f235352c3ce8e",
             "type": "leaf",
             "state": {
-              "type": "markdown",
+              "type": "canvas",
               "state": {
-                "file": "IoC Monitoring/Logs.md",
-                "mode": "source",
-                "source": false
+                "file": "Untitled 2.canvas",
+                "viewState": {
+                  "x": 0,
+                  "y": 0,
+                  "zoom": 0
+                }
               },
-              "icon": "lucide-file",
-              "title": "Logs"
+              "icon": "lucide-layout-dashboard",
+              "title": "Untitled 2"
             }
           }
         ]
@@ -174,6 +177,7 @@
   },
   "left-ribbon": {
     "hiddenItems": {
+      "obsidian-git:Open Git source control": false,
       "table-editor-obsidian:Advanced Tables Toolbar": false,
       "switcher:Open quick switcher": false,
       "graph:Open graph view": false,
@@ -184,31 +188,48 @@
       "bases:Create new base": false
     }
   },
-  "active": "e29205c606337b3e",
+  "active": "938f235352c3ce8e",
   "lastOpenFiles": [
-    "Tools/Sources.md",
-    "IoC Monitoring/Logs.md",
-    "4624E.png",
-    "Network/Wireshark.md",
-    "Network/WS TR.png",
-    "IoC Monitoring/Data exfiltration.md",
-    "IoC Monitoring/MITM.md",
-    "IoC Monitoring/DoS.md",
-    "503.png",
-    "DoS 1.png",
-    "Untitled",
-    "Tools",
-    "DoS.png",
-    "DDoS.png",
-    "2026-04-18.md",
+    "2026-05-13.md",
+    "Untitled 2.canvas",
+    "Untitled 1.canvas",
+    "Untitled 1.base",
     "Untitled.canvas",
-    "Untitled.base",
-    "1222.png",
-    "21.png",
-    "11.png",
-    "ARP ATT.png",
-    "IoC Monitoring",
-    "MITRE ATT&CK lifecycle",
-    "Network"
+    "Logs/Linux/Threat Detection.md",
+    "Logs/Linux/Linux System Logs.md",
+    "Tools/Sources.md",
+    "sh.png",
+    "cwd.png",
+    "ppidrez.png",
+    "pid.png",
+    "idcom.png",
+    "ppid.png",
+    "auditd 1.png",
+    "Accepted 1.png",
+    "Accepted.png",
+    "Q2.png",
+    "Logs/Windows/Log Types.md",
+    "Logs/Windows/Detect C2 & Malware.md",
+    "Logs/Linux",
+    "Logs/Windows",
+    "IoC Monitoring/Data exfiltration.md",
+    "Logs/Windows/Logs.md",
+    "Logs",
+    "Attacks/DoS.md",
+    "Attacks/MITM.md",
+    "Labz/Log Analysis (Event Viewer & PowerShell).md",
+    "Red/After Gaining Access.md",
+    "Network/Wireshark.md",
+    "CLI/Windows.md",
+    "Attacks",
+    "WS deets.png.md",
+    "as.md",
+    "adas.md",
+    "CLI",
+    "Red",
+    "Labz",
+    "Tools",
+    "2026-04-18.md",
+    "Untitled.base"
   ]
 }
