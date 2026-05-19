@@ -1,19 +1,19 @@
 {
   "main": {
-    "id": "0f8a68a5e21a3e1b",
+    "id": "a0341c12be3211d1",
     "type": "split",
     "children": [
       {
-        "id": "cbf83c923066c242",
+        "id": "7e9bbeb7a119a820",
         "type": "tabs",
         "children": [
           {
-            "id": "938f235352c3ce8e",
+            "id": "b32b9d8c4b11a1d7",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Logs/Linux/Threat Detection.md",
+                "file": "Logs/Linux/Threat Detection/Threat Detection.md",
                 "mode": "source",
                 "source": false
               },
@@ -27,15 +27,15 @@
     "direction": "vertical"
   },
   "left": {
-    "id": "a896c9317aa8f8ef",
+    "id": "04985e23483b7f65",
     "type": "split",
     "children": [
       {
-        "id": "662822fc65eab84f",
+        "id": "cd465a1ede0466f4",
         "type": "tabs",
         "children": [
           {
-            "id": "5a38d0d1638fc788",
+            "id": "bb1618018583c38f",
             "type": "leaf",
             "state": {
               "type": "file-explorer",
@@ -48,7 +48,7 @@
             }
           },
           {
-            "id": "fab127b0ba976516",
+            "id": "799f2794f0b8e89a",
             "type": "leaf",
             "state": {
               "type": "search",
@@ -65,7 +65,7 @@
             }
           },
           {
-            "id": "6aa9c422eb3abef4",
+            "id": "d1bff116b6ebd59f",
             "type": "leaf",
             "state": {
               "type": "bookmarks",
@@ -81,20 +81,20 @@
     "width": 200
   },
   "right": {
-    "id": "d70ad6564bad5a50",
+    "id": "6d0cf091817f7b6e",
     "type": "split",
     "children": [
       {
-        "id": "2b90c20d62708417",
+        "id": "4b256176e1d4232b",
         "type": "tabs",
         "children": [
           {
-            "id": "ed3907ec6db50981",
+            "id": "defe32242889a30a",
             "type": "leaf",
             "state": {
               "type": "backlink",
               "state": {
-                "file": "Network/Wireshark.md",
+                "file": "Obsidian/Logs/Linux/Threat Detection.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -104,25 +104,25 @@
                 "unlinkedCollapsed": true
               },
               "icon": "links-coming-in",
-              "title": "Backlinks for Wireshark"
+              "title": "Backlinks for Threat Detection"
             }
           },
           {
-            "id": "002b7bc723ae0f4a",
+            "id": "998b6b3233b3c8bb",
             "type": "leaf",
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "Network/Wireshark.md",
+                "file": "Obsidian/Logs/Linux/Threat Detection.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               },
               "icon": "links-going-out",
-              "title": "Outgoing links from Wireshark"
+              "title": "Outgoing links from Threat Detection"
             }
           },
           {
-            "id": "13228a0a2e469bbb",
+            "id": "0c098cebd18d106c",
             "type": "leaf",
             "state": {
               "type": "tag",
@@ -137,7 +137,7 @@
             }
           },
           {
-            "id": "bac462e2b31b0e44",
+            "id": "3cae1a4a781dff6f",
             "type": "leaf",
             "state": {
               "type": "all-properties",
@@ -151,21 +151,32 @@
             }
           },
           {
-            "id": "9c59b05c155a1e90",
+            "id": "292a5ddb668af31f",
             "type": "leaf",
             "state": {
               "type": "outline",
               "state": {
-                "file": "Network/Wireshark.md",
+                "file": "Obsidian/Logs/Linux/Threat Detection.md",
                 "followCursor": false,
                 "showSearch": false,
                 "searchQuery": ""
               },
               "icon": "lucide-list",
-              "title": "Outline of Wireshark"
+              "title": "Outline of Threat Detection"
+            }
+          },
+          {
+            "id": "c19b0a1975bd6a72",
+            "type": "leaf",
+            "state": {
+              "type": "git-view",
+              "state": {},
+              "icon": "git-pull-request",
+              "title": "Source Control"
             }
           }
-        ]
+        ],
+        "currentTab": 5
       }
     ],
     "direction": "horizontal",
@@ -174,7 +185,6 @@
   },
   "left-ribbon": {
     "hiddenItems": {
-      "obsidian-git:Open Git source control": false,
       "table-editor-obsidian:Advanced Tables Toolbar": false,
       "switcher:Open quick switcher": false,
       "graph:Open graph view": false,
@@ -182,62 +192,63 @@
       "daily-notes:Open today's daily note": false,
       "templates:Insert template": false,
       "command-palette:Open command palette": false,
-      "bases:Create new base": false
+      "bases:Create new base": false,
+      "obsidian-git:Open Git source control": false
     }
   },
-  "active": "938f235352c3ce8e",
+  "active": "b32b9d8c4b11a1d7",
   "lastOpenFiles": [
-    "envTPM.png",
-    "pazz.png",
-    "pass.png",
-    "opzies.png",
-    "optz.png",
-    "opt 1.png",
-    "opt.png",
-    "root 2.png",
-    "root 1.png",
-    "root.png",
-    "greppass.png",
-    "Untitled.md",
-    "Logs/Linux/Threat Detection.md",
+    "Logs/Linux/Threat Detection/attachments/MITRE.png",
+    "Logs/Linux/Threat Detection/attachments/SSHbackdoor.png",
+    "Logs/Linux/Threat Detection/attachments/userADD.png",
+    "Logs/Linux/Linux System Logs.md",
+    "Logs/Linux/Threat Detection/Threat Detection.md",
+    "Logs/Linux/Threat Detection/attachments/cronROOT.png",
+    "Logs/Linux/Threat Detection/attachments/cronSEARCH.png",
+    "Logs/Linux/Threat Detection/attachments/cronNANO.png",
+    "Logs/Linux/Threat Detection/attachments/CronNANO.png",
+    "Logs/Linux/Threat Detection/attachments/CronSHOW.png",
+    "Logs/Linux/Threat Detection/attachments/CronJOB.png",
+    "Logs/Linux/Threat Detection/attachments/CronJOB.png",
+    "Logs/Linux/Threat Detection/attachments/tuxFLAG.png",
+    "Untitled 2.base",
+    "Untitled 1.base",
+    "IMG-20260519203630600.png.md",
+    "Logs/Windows/Detect C2 & Malware.md",
+    "Logs/Windows/Logs.md",
+    "Logs/Windows/Log Types.md",
+    "Logs/Linux/Threat Detection",
+    "Logs/Linux/Threat Detection/attachments",
+    "as.md",
+    "Untitled.base",
+    "Untitled.canvas",
+    "Untitled 1.canvas",
+    "Untitled 2.canvas",
     "Obsidian/as.md",
-    "Obsidian/Untitled.canvas",
-    "Obsidian/Untitled.base",
-    "Obsidian/Untitled 2.canvas",
-    "Obsidian/Untitled 1.canvas",
-    "Obsidian/Untitled 1.base",
-    "Obsidian/Tools/Sources.md",
-    "Obsidian/Tools",
-    "Obsidian/Red/After Gaining Access.md",
-    "Obsidian/Red",
-    "Obsidian/Network/Wireshark.md",
-    "Obsidian/Network",
-    "Obsidian/Logs/Windows/Logs.md",
-    "Obsidian/Logs/Windows/Log Types.md",
-    "Obsidian/Logs/Windows/Detect C2 & Malware.md",
+    "Untitled.md",
+    "2026-05-13.md",
+    "IoC Monitoring/Data exfiltration.md",
+    "Desktop",
+    "all_history.txt",
     "Obsidian/Logs/Linux/Threat Detection.md",
     "Obsidian/Logs/Linux/Linux System Logs.md",
-    "Obsidian/Logs/Windows",
-    "Obsidian/Logs/Linux",
-    "Obsidian/Logs",
-    "Obsidian/Labz/Log Analysis (Event Viewer & PowerShell).md",
-    "Obsidian/Labz",
-    "Obsidian/IoC Monitoring/Data exfiltration.md",
-    "Obsidian/IoC Monitoring",
-    "Obsidian/CLI/Windows.md",
-    "Obsidian/Attacks/MITM.md",
-    "Obsidian/Attacks/DoS.md",
-    "Obsidian/2026-05-13.md",
-    "Red/After Gaining Access.md",
-    "Network/Wireshark.md",
-    "Logs/Linux/Linux System Logs.md",
-    "IoC Monitoring/Data exfiltration.md",
-    "Untitled 2.canvas",
-    "2026-05-13.md",
-    "Untitled 1.canvas",
-    "Untitled.canvas",
     "Tools/Sources.md",
-    "Logs/Windows/Log Types.md",
-    "Logs/Windows/Detect C2 & Malware.md"
+    "Tools",
+    "Red/After Gaining Access.md",
+    "Red",
+    "Network/Wireshark.md",
+    "Network",
+    "Labz/Log Analysis (Event Viewer & PowerShell).md",
+    "CLI/Windows.md",
+    "Attacks/MITM.md",
+    "Attacks/DoS.md",
+    "Obsidian/Tools/Sources.md",
+    "Obsidian/IoC Monitoring/Data exfiltration.md",
+    "Obsidian/Red/After Gaining Access.md",
+    "Obsidian/Labz/Log Analysis (Event Viewer & PowerShell).md",
+    "Obsidian/Logs/Windows/Logs.md",
+    "Obsidian/Untitled 2.canvas",
+    "Obsidian/Untitled 1.canvas",
+    "Obsidian/Untitled.canvas"
   ]
 }

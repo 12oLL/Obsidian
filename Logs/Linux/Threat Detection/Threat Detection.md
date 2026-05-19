@@ -26,7 +26,7 @@ As we can see the common brute force sign of multiple failed logins at the same 
 # Detection Methods
 It is pretty simple to investigate for such type of behavior. We will strictly use the terminal as it is more straightforward without needing to know too much. If you are new to Linux logs take a look [here](https://github.com/12oLL/Labz/blob/main/LogAnalysis/Linux/Logging%20in%20Terminal.md) so you are prepared better.
 
-![[Accepted 1.png]]
+![[accept.png]]
 
 Filtering for **Accepted** will give us the logins that approved and whether they were SSH keys or passwords. Talking about this seems easy, but what do we look for exactly that indicates a red flag?
 
@@ -204,7 +204,7 @@ As we saw previously, the malware transfers files via SCP. So lets find it.
 
 We know that Dota3, as most malware, hides in the **/tmp** file. So we will use that to our advantage when filtering.
 
-![](gz%201.png)
+![](gz.png)
 
 **Q2**: What was the full command line of the cryptominer launch?
 This is also found using the same command in the question above.
@@ -233,7 +233,7 @@ For Linux, a shell is basically **SSH**, where you can connect to a device using
 
 ![SSH connection](ssh%201.png)
 
-![A demonstration of Shell's connection to the kernel.](Shell%202.png)
+![A demonstration of Shell's connection to the kernel.](Shell.png)
 
 Now Reverse Shells are different, as it makes the target system connect to the remote user, which gives the user (you) remote access via the command-line. 
 
@@ -346,7 +346,7 @@ I used grep and filtered for pass, simple as that.
 
 Same thing here, i grepped for root and found it straight away.
 
-![](root%202.png)
+![](root.png)
 
 **Q3**: Looking at the detected .env file, what was the root password?
 
@@ -366,7 +366,7 @@ Another way to answer this is to run this command in the TryPingMe reverse shell
 
 ![](envTPM.png)
 
-![](pazz.png)
+![](TPMpass.png)
 
 And that was it for privilege escalation !
 
@@ -382,3 +382,155 @@ Cron jobs are basically scheduled tasks from Windows, it is the simplest way to 
 @reboot nohup /home/<user>/.<hidden-directory>/<malware-name> > /dev/null 2>&1 &
 ```
 
+Lets move on without wasting too much time, we will focus on the GoldMax malware and how to detect persistence.
+
+Our goal is to detect persistence as soon as it established, and we can do so using multiple techniques. 
+
+ **Monitoring changes in cron job files**: `/etc/crontab `, `/etc/cron.d*`, `/var/spool/cron/*`, `/var/spool/crontab/*`
+
+**Monitoring changes in systemd folders**: `/lib/systemd/system/*` and `/etc/systemd/system/*`
+
+**Monitor related processes**: `nano /etc/crontab`, `crontab -e`, `systemctl start|enable <service>`
+
+## Test
+
+Lets go through some practice after what we just digested. 
+First, i will go through the rules of the auditd on the system provided by the TryHackMe lab
+
+![](auditdrulez.png)
+
+We can see it shows the rules that should be logged when we search for them using **ausearch**. We talked about auditd rules before if you dont have a clear idea about it in the [Linux System Logs](Linux%20System%20Logs.md). 
+
+Moving on, we will solve two questions. Our task is to detect **2** persistence methods using **auditd logs**.
+
+**Q1**: What flag did you get after running the malware persisting as a service?
+
+We will start by searching using **ausearch**. The reason we are searching there is because **systemd** host the most critical system components. Services files are located in **/lib/systemd/system** or **/etc/systemd/system**.
+
+Because there are many folders inside systemd, we cant go through them manually as that will take too much time and affect our MTTD, so we will use audit search based on the rules defined above.
+
+![](systemdAUDIT.png)
+
+The attacker downloaded the persistence and saved it in the **/etc/systemd/system** folder. We will follow the attacker's steps and see what they left behind.
+
+![](tuxservice.png)
+
+Lets go and run the service they downloaded.
+
+![](badrservice.png)
+
+We can see how the attacker prepared the file and set it to persist despite any reboots. Lets go ahead and run it to get our flag which is in **var/lib/misc**.
+
+![](tuxFLAG.png)
+
+And this is our answer.
+
+**Q2**: What flag did you get after running the malware persisting as a cron job?
+
+This question requires us to detect a cron job malware persistence. Lets go ahead and do that.
+
+![](CronJOB.png)
+
+We will execute the attackers command **crontab -e** inside the **/var/spool/cron**.
+
+![](CronSHOW.png)
+
+I will use nano as it is the simplest.
+
+![](cronNANO.png)
+
+**Note:** When going through system directories, you might face issues accessing some files and directories. Make sure to be root using **sudo su**.
+
+Lets search for the directory we just found at the bottom in the picture above.
+
+![](cronROOT.png)
+
+And we found our second answer.
+
+# Account Persistence 
+
+What we did in the previous chapter was basically detecting the persistence surviving a reboot, but what about **persistent access**? Lets go through it.
+
+## New User Creation
+
+Having persistent access depends on how the attacker entered and what they did after that.
+For instance, if the attacker gained access through SSH, they can create a new user account and add it to a privileged group, then they can access it whenever they want.
+
+To detect such method, you can easily search for account creation in the **auth.log** and filter for useradd and usermod as we did before here [Linux System Logs](Linux%20System%20Logs.md).
+
+``` bash
+root@thm-vm:~$ cat /var/log/auth.log | grep -E 'useradd|usermod'
+2025-09-18T15:46:30 thm-vm useradd[27254]: new group: name=support, GID=1001 
+
+2025-09-18T15:46:30 thm-vm useradd[27254]: new user: name=support, UID=1001, 
+GID=1001, home=/home/support, shell=/bin/bash
+
+2025-09-18T15:46:32 thm-vm usermod[27258]: add 'support' to group 'sudo'
+
+2025-09-18T15:46:32 thm-vm usermod[27258]: add 'support' to shadow group 'sudo'
+```
+
+## Backdoored SSH keys
+
+Another common method is also backdooring using SSH created by the attacker. This makes it harder to analyze and find the suspicious SSH key.
+
+``` bash
+# Creating an SSH key
+root@thm-vm:~$ echo "AAAAC3Nza...IkiINvQt/R" >> ~/.ssh/authorized_keys
+
+# Searching for the SSH key
+root@thm-vm:~$ cat ~/.ssh/authorized_keys 
+sh-ed25519 AAAAC3Nza...oh5fpNy1Gi # Legitimate key
+ssh-ed25519 AAAAC3Nza...N9a2UYsFpQ # Legitimate key 
+ssh-ed25519 AAAAC3Nza...IkiINvQt/R # Backdoor key
+```
+
+### Detecting SSH Backdoor
+
+By default, authorized SSH public keys are stored in in each user's **/.ssh/authorized_keys** file, so we monitor these files using **auditd**. Note that this isnt the blueprint method to search for SSH backdoors, as there are other ways it can be done and auditd simply cant detect it.
+
+``` bash
+root@thm-vm:~$ ausearch -i -f /.ssh/authorized_keys
+# Take note that the command 'echo' is logged as 'bash'
+type=PROCTITLE msg=audit(09/22/25 16:55:12.740:806) : proctitle=bash
+
+type=PATH msg=audit(09/22/25 16:55:12.740:806) : item=1 
+
+name=/home/user/.ssh/authorized_keys
+
+type=CWD msg=audit(09/22/25 16:55:12.740:806) : cwd=/
+
+type=SYSCALL msg=audit(09/22/25 16:55:12.740:806) : syscall=openat [...] a2=O_WRONLY|O_CREAT|O_EXCL ppid=1265 pid=1310 uid=root exe=/usr/bin/vi key=systemd
+```
+
+Lets do some questions.
+
+**Q1**: Which user was created and added to the sudo group?
+
+We will go through the auth log as thats where will account creations will be and we will find our answer. 
+
+![](userADD.png)
+
+**Q2**: Which file was changed to allow SSH key persistence?
+
+Use ausearch and search for the default file where public ssh keys are stored and thats our answer. 
+
+![](SSHbackdoor.png)
+
+# Conclusion
+## Targeted attacks
+
+Lastly, the malwares we have gone through are usually automated and most of the time do not necessarily perform privilege escalation. However, they can be more complex and do that sometimes.
+
+## Linux
+
+Linux machines are used as entry points as they are mostly used as firewalls, web servers, and other public facing services. Although most organizations use Windows, a single compromised Linux server can open a great attack surface to an organization's network such as an active directory and cause a chaos. This is why its good practice as a SOC analyst to be able to secure multiple operating systems to avoid such issue.
+
+## Threat Detection Finale
+
+If you have reached this far, this is what we have covered together so far (highlighted in yellow).
+I suggest you take a look at MITRE ATT&CK [Framework]() to have a better understanding and build up your knowledge.
+
+![](MITRE.png)
+
+That was all, see yall next time and happy hacking 😃 💻 .
